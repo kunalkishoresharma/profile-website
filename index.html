@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DATA & TIME</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      div#date {
+        text-align: center;
+        color: indianred;
+        font-size: 2vmax;
+        font-weight: 900;
+        margin-top: 4%;
+        padding-bottom: 2rem;
+        border-bottom: 5px solid orangered;
+
+      }
+      #quotesBlock h1{
+        text-align: center;
+        margin-top: 4%;
+
+      }
+      blockquote#quotes {
+    font-size: 2vmax;
+    text-align: center;
+    padding: 2rem;
+}
+    </style>
+  </head>
+  <body>
+    <div id="date"></div>
+    <div id="quotesBlock">
+        <h1>Quote</h1>
+        <blockquote id="quotes">
+
+        </blockquote>
+    </div>
+    <script>
+      let todayDate = new Date();
+      document.querySelector("#date").innerHTML = todayDate;
+
+      const options = {
+        method: "POST",
+        url: "https://motivational-quotes1.p.rapidapi.com/motivation",
+        headers: {
+          "content-type": "application/json",
+          "X-RapidAPI-Key":
+            "e2589685e4msh7e6762a73625e87p164ae8jsnac64002cff58",
+          "X-RapidAPI-Host": "motivational-quotes1.p.rapidapi.com",
+        },
+        data: '{"key1":"value","key2":"value"}',
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          console.log(response.data);
+          document.querySelector("#quotes").innerHTML = response.data;
+
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    </script>
+  </body>
+</html>
