@@ -13,6 +13,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
 
     <style>
+      
     html,body{
         padding: 0;
         margin: 0;
@@ -51,6 +52,7 @@
     </style>
   </head>
   <body>
+    
     <div id="date"></div>
     <div id="quotesBlock">
         <h1>Quote</h1>
@@ -60,26 +62,24 @@
     </div>
     <div class="copyright">&copy; Manage by KK for personal interest</div>
     <script>
+
       let todayDate = new Date();
       document.querySelector("#date").innerHTML = todayDate;
 
       const options = {
-        method: "POST",
-        url: "https://motivational-quotes1.p.rapidapi.com/motivation",
+        method: 'GET',
+        url: 'https://quotes15.p.rapidapi.com/quotes/random/',
         headers: {
-          "content-type": "application/json",
-          "X-RapidAPI-Key":
-            "e2589685e4msh7e6762a73625e87p164ae8jsnac64002cff58",
-          "X-RapidAPI-Host": "motivational-quotes1.p.rapidapi.com",
-        },
-        data: '{"key1":"value","key2":"value"}',
+          'X-RapidAPI-Key': 'e2589685e4msh7e6762a73625e87p164ae8jsnac64002cff58',
+          'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
+        }
       };
 
       axios
         .request(options)
         .then(function (response) {
           console.log(response.data);
-          document.querySelector("#quotes").innerHTML = response.data;
+          document.querySelector("#quotes").innerHTML = response.data.content;
 
         })
         .catch(function (error) {
